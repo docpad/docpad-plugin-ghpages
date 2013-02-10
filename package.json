@@ -27,7 +27,8 @@
 		"docpad": ">=6.21 <7"
 	},
 	"dependencies": {
-		"bal-util": "~1.6.1"
+		"bal-util": "~1.6.1",
+		"rimraf": "~2.1.4"
 	},
 	"devDependencies": {
 		"coffee-script": "~1.4.0"
