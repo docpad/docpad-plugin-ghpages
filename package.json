@@ -1,0 +1,39 @@
+{
+	"name": "docpad-plugin-ghpages",
+	"version": "2.0.0",
+	"description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
+	"homepage": "http://docpad.org/plugin/ghpages",
+	"keywords": [
+		"docpad",
+		"docpad-plugin", "docpad-deployer",
+		"github", "github-pages", "ghpages"
+	],
+	"author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+	"maintainers": [
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+	],
+	"contributors": [
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+	],
+	"bugs": {
+		"url": "http://docpad.org/plugin/ghpages/issues"
+	},
+	"repository" : {
+		"type": "git",
+		"url": "https://github.com/docpad/docpad-plugin-ghpages.git"
+	},
+	"engines" : {
+		"node": ">=0.4",
+		"docpad": ">=6.21 <7"
+	},
+	"dependencies": {
+		"bal-util": "~1.6.1"
+	},
+	"devDependencies": {
+		"coffee-script": "~1.4.0"
+	},
+	"main": "./out/ghpages.plugin.js",
+	"scripts": {
+		"test": "node ./out/ghpages.test.js"
+	}
+}
