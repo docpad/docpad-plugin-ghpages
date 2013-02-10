@@ -38,11 +38,3 @@ module.exports = (BasePlugin) ->
 
 			# Chain
 			@
-
-
-		# =================================
-		# Actions
-
-		generate: (next) =>
-			@docpad.action('generate',next)
-			@
