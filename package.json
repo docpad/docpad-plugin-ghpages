@@ -10,10 +10,14 @@
 	],
 	"author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
 	"maintainers": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+		"Avi Deitcher (https://github.com/deitch)",
+		"Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
 	],
 	"contributors": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)"
+		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+		"Avi Deitcher (https://github.com/deitch)",
+		"Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
 	],
 	"bugs": {
 		"url": "http://docpad.org/plugin/ghpages/issues"
@@ -27,8 +31,7 @@
 		"docpad": ">=6.21 <7"
 	},
 	"dependencies": {
-		"bal-util": "~1.6.1",
-		"rimraf": "~2.1.4"
+		"bal-util": "~1.16.5"
 	},
 	"devDependencies": {
 		"coffee-script": "~1.4.0"
