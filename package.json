@@ -28,16 +28,13 @@
 	},
 	"engines" : {
 		"node": ">=0.4",
-		"docpad": ">=6.21 <7"
+		"docpad": ">=6.24 <7"
 	},
 	"dependencies": {
-		"bal-util": "~1.16.5"
+		"bal-util": "~1.16.8"
 	},
 	"devDependencies": {
 		"coffee-script": "~1.4.0"
 	},
-	"main": "./out/ghpages.plugin.js",
-	"scripts": {
-		"test": "node ./out/ghpages.test.js"
-	}
+	"main": "./out/ghpages.plugin.js"
 }

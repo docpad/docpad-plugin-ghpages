@@ -5,7 +5,7 @@ pathUtil = require('path')
 # Export
 module.exports = (BasePlugin) ->
 	# Define
-	class GitHubPagesPlugin extends BasePlugin
+	class GhpagesPlugin extends BasePlugin
 		# Name
 		name: 'ghpages'
 
@@ -13,6 +13,9 @@ module.exports = (BasePlugin) ->
 		config:
 			deployBranch: 'gh-pages'
 			environment:  'static'
+			environments:
+				static:
+					asd: 'asd'
 
 		# =============================
 		# Events
@@ -21,12 +24,12 @@ module.exports = (BasePlugin) ->
 		consoleSetup: (opts) ->
 			# Prepare
 			{consoleInterface,commander} = opts
+			me = @
 			config = @config
 			docpad = @docpad
 
-			# because it does not seem to adopt the environment correctly
-			docpad.config.env = config.environment;
-			commander.env = config.environment;
+			# Let's try this way
+			docpad.setInstanceConfig({env:config.environment})
 
 			# Deploy command
 			commander
