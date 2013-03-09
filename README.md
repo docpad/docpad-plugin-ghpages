@@ -5,7 +5,7 @@ Deploy to Github Pages easily via `docpad deploy-ghpages`
 ## Install
 
 ```
-npm install --save docpad-plugin-stylus
+npm install --save docpad-plugin-ghpages
 ```
 
 
