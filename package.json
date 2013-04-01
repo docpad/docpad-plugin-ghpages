@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-ghpages",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
 	"homepage": "http://docpad.org/plugin/ghpages",
 	"keywords": [
@@ -31,10 +31,10 @@
 		"docpad": ">=6.24 <7"
 	},
 	"dependencies": {
-		"bal-util": "~1.16.8"
+		"bal-util": "~1.18.0"
 	},
 	"devDependencies": {
-		"coffee-script": "~1.4.0"
+		"coffee-script": "~1.6.2"
 	},
 	"main": "./out/ghpages.plugin.js"
 }
