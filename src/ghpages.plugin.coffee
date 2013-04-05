@@ -13,9 +13,6 @@ module.exports = (BasePlugin) ->
 		config:
 			deployBranch: 'gh-pages'
 			environment:  'static'
-			environments:
-				static:
-					asd: 'asd'
 
 		# =============================
 		# Events
@@ -55,7 +52,7 @@ module.exports = (BasePlugin) ->
 							return next(err)  if err
 
 							# Fetch the project's remote url so we can push to it in our new git repo
-							balUtil.gitCommand ["config", "remote.origin.url"], (err,stdout,stderr) ->
+							balUtil.spawnCommand 'git', ['config', 'remote.origin.url'], (err,stdout,stderr) ->
 								# Error?
 								return next(err)  if err
 
@@ -63,7 +60,7 @@ module.exports = (BasePlugin) ->
 								remoteRepoUrl = stdout.replace(/\n/,"")
 
 								# Fetch the last log so we can add a meaningful commit message
-								balUtil.gitCommand ["log", "--oneline"], (err,stdout,stderr) ->
+								balUtil.spawnCommand 'git', ['log', '--oneline'], (err,stdout,stderr) ->
 									# Error?
 									return next(err)  if err
 
@@ -73,12 +70,12 @@ module.exports = (BasePlugin) ->
 									# Initialize a git repo inside the out directory
 									# and push it to the deploy branch
 									gitCommands = [
-										["init"]
-										["add", "."]
-										["commit", "-m", lastCommit]
-										["push", "--force", remoteRepoUrl, "master:#{config.deployBranch}"]
+										['init']
+										['add', '.']
+										['commit', '-m', lastCommit]
+										['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
 									]
-									balUtil.gitCommands gitCommands, {cwd:outPath,output:true}, (err,stdout,stderr) ->
+									balUtil.spawnCommands 'git', gitCommands, {cwd:outPath,output:true}, (err,stdout,stderr) ->
 										# Error?
 										return next(err)  if err
 
@@ -88,7 +85,7 @@ module.exports = (BasePlugin) ->
 											return next(err)  if err
 
 											# Log
-											docpad.log 'info', 'Deployment to GitHub Pages completed successfully'
+											docpad.log('info', 'Deployment to GitHub Pages completed successfully')
 
 											# Done
 											return next()
