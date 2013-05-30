@@ -39,6 +39,7 @@ module.exports = (BasePlugin) ->
 
 					# Prepare
 					outPath = docpad.config.outPath
+					return next("Cannot have config.outPath be repo root directory '.'") if outPath is '' or outPath is '.' or outPath is './'
 					outGitPath = pathUtil.join(outPath,'.git')
 
 					# Remove the out git repo if it exists
