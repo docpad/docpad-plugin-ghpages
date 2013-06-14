@@ -39,7 +39,9 @@ module.exports = (BasePlugin) ->
 
 					# Prepare
 					outPath = docpad.config.outPath
-					return next("Cannot have config.outPath be repo root directory '.'") if outPath is '' or outPath is '.' or outPath is './'
+					if outPath is docpad.config.rootPath
+						err = new Error("Your outPath configuration has been customised. Please remove the customisation in order to use the GitHub Pages plugin")
+						return next(err)
 					outGitPath = pathUtil.join(outPath,'.git')
 
 					# Remove the out git repo if it exists

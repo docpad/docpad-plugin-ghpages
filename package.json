@@ -31,10 +31,11 @@
 		"docpad": ">=6.24 <7"
 	},
 	"dependencies": {
-		"bal-util": "~2.0.2"
+		"bal-util": "~2.1.0"
 	},
 	"devDependencies": {
-		"coffee-script": "~1.6.2"
+		"coffee-script": "~1.6.2",
+		"docpad": ">=6.37 <7"
 	},
 	"main": "./out/ghpages.plugin.js"
 }

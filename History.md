@@ -1,5 +1,8 @@
 # History
 
+- v2.0.3 June 14, 2013
+	- Do not allow an outPath that is the same as the rootPath
+
 - v2.0.2 April 5, 2013
 	- Dependency upgrades
 
