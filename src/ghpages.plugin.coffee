@@ -1,4 +1,5 @@
 # Prepare
+safeps = require('safeps')
 balUtil = require('bal-util')
 pathUtil = require('path')
 
@@ -55,7 +56,7 @@ module.exports = (BasePlugin) ->
 							return next(err)  if err
 
 							# Fetch the project's remote url so we can push to it in our new git repo
-							balUtil.spawnCommand 'git', ['config', 'remote.origin.url'], (err,stdout,stderr) ->
+							safeps.spawnCommand 'git', ['config', 'remote.origin.url'], (err,stdout,stderr) ->
 								# Error?
 								return next(err)  if err
 
@@ -63,7 +64,7 @@ module.exports = (BasePlugin) ->
 								remoteRepoUrl = stdout.replace(/\n/,"")
 
 								# Fetch the last log so we can add a meaningful commit message
-								balUtil.spawnCommand 'git', ['log', '--oneline'], (err,stdout,stderr) ->
+								safeps.spawnCommand 'git', ['log', '--oneline'], (err,stdout,stderr) ->
 									# Error?
 									return next(err)  if err
 
@@ -78,7 +79,7 @@ module.exports = (BasePlugin) ->
 										['commit', '-m', lastCommit]
 										['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
 									]
-									balUtil.spawnCommands 'git', gitCommands, {cwd:outPath,output:true}, (err,stdout,stderr) ->
+									safeps.spawnCommands 'git', gitCommands, {cwd:outPath,output:true}, (err,stdout,stderr) ->
 										# Error?
 										return next(err)  if err
 
