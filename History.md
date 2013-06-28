@@ -1,5 +1,8 @@
 # History
 
+- v2.1.2 June 29, 2013
+	- Repackaged
+
 - v2.1.1 June 27, 2013
 	- Repackaged
 
