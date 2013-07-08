@@ -1,5 +1,8 @@
 # History
 
+- v2.2.0 July 8, 2013
+	- Easier debugging
+
 - v2.1.2 June 29, 2013
 	- Repackaged
 

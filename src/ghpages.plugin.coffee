@@ -12,6 +12,7 @@ module.exports = (BasePlugin) ->
 
 		# Config
 		config:
+			deployRemote: 'origin'
 			deployBranch: 'gh-pages'
 			environment:  'static'
 
@@ -23,7 +24,7 @@ module.exports = (BasePlugin) ->
 			# Prepare
 			{consoleInterface,commander} = opts
 			me = @
-			config = @config
+			config = @getConfig()
 			docpad = @docpad
 
 			# Let's try this way
@@ -32,8 +33,11 @@ module.exports = (BasePlugin) ->
 			# Deploy command
 			commander
 				.command('deploy-ghpages')
-				.description("deploys your #{config.environment} website to the #{config.deployBranch} branch")
+				.description("deploys your #{config.environment} website to the #{config.deployRemote}/#{config.deployBranch} branch")
 				.action consoleInterface.wrapAction (next) ->
+					# Fetch the latest plugin configuration
+					config = me.getConfig()
+
 					# Fetch latest DocPad configuration
 					{outPath,rootPath} = docpad.getConfig()
 
@@ -46,28 +50,43 @@ module.exports = (BasePlugin) ->
 						return next(err)
 					outGitPath = pathUtil.join(outPath,'.git')
 
+					# Log
+					docpad.log 'debug', 'Removing old ./out/.git directory..'
+
 					# Remove the out git repo if it exists
 					balUtil.rmdirDeep outGitPath, (err) ->
 						# Error?
 						return next(err)  if err
+
+						# Log
+						docpad.log 'debug', 'Performing static generation...'
 
 						# Generate the static environment to out
 						docpad.action 'generate', {env:config.environment}, (err) ->
 							# Error?
 							return next(err)  if err
 
+							# Log
+							docpad.log 'debug', "Fetching the URL of the {config.deployRemote} remote..."
+
 							# Fetch the project's remote url so we can push to it in our new git repo
-							safeps.spawnCommand 'git', ['config', 'remote.origin.url'], {cwd:rootPath}, (err,stdout,stderr) ->
+							safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
 								# Error?
 								return next(err)  if err
 
 								# Extract
 								remoteRepoUrl = stdout.replace(/\n/,"")
 
+								# Log
+								docpad.log 'debug', 'Fetching log messages...'
+
 								# Fetch the last log so we can add a meaningful commit message
 								safeps.spawnCommand 'git', ['log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
 									# Error?
 									return next(err)  if err
+
+									# Log
+									docpad.log 'debug', 'Performing push...'
 
 									# Extract
 									lastCommit = stdout.split('\n')[0]
@@ -84,13 +103,16 @@ module.exports = (BasePlugin) ->
 										# Error?
 										return next(err)  if err
 
+										# Log
+										docpad.log('info', 'Deployment to GitHub Pages completed successfully')
+
+										# Log
+										docpad.log 'debug', 'Removing new ./out/.git directory..'
+
 										# Now that deploy is done, remove the out git repo
 										balUtil.rmdirDeep outGitPath, (err) ->
 											# Error?
 											return next(err)  if err
-
-											# Log
-											docpad.log('info', 'Deployment to GitHub Pages completed successfully')
 
 											# Done
 											return next()
