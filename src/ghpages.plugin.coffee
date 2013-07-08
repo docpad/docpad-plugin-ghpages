@@ -25,6 +25,7 @@ module.exports = (BasePlugin) ->
 			me = @
 			config = @config
 			docpad = @docpad
+			{outPath,rootPath} = config
 
 			# Let's try this way
 			docpad.setInstanceConfig({env:config.environment})
@@ -39,8 +40,7 @@ module.exports = (BasePlugin) ->
 					docpad.log 'info', 'Deployment to GitHub Pages starting...'
 
 					# Prepare
-					outPath = docpad.config.outPath
-					if outPath is docpad.config.rootPath
+					if outPath is rootPath
 						err = new Error("Your outPath configuration has been customised. Please remove the customisation in order to use the GitHub Pages plugin")
 						return next(err)
 					outGitPath = pathUtil.join(outPath,'.git')
@@ -56,7 +56,7 @@ module.exports = (BasePlugin) ->
 							return next(err)  if err
 
 							# Fetch the project's remote url so we can push to it in our new git repo
-							safeps.spawnCommand 'git', ['config', 'remote.origin.url'], (err,stdout,stderr) ->
+							safeps.spawnCommand 'git', ['config', 'remote.origin.url'], {cwd:rootPath}, (err,stdout,stderr) ->
 								# Error?
 								return next(err)  if err
 
@@ -64,7 +64,7 @@ module.exports = (BasePlugin) ->
 								remoteRepoUrl = stdout.replace(/\n/,"")
 
 								# Fetch the last log so we can add a meaningful commit message
-								safeps.spawnCommand 'git', ['log', '--oneline'], (err,stdout,stderr) ->
+								safeps.spawnCommand 'git', ['log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
 									# Error?
 									return next(err)  if err
 
