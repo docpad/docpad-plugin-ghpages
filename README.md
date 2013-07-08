@@ -21,7 +21,7 @@ Run `docpad deploy-ghpages` to deploy the contents of your out directory directl
 ## Debugging
 Dpendending on circumstances, maybe the github pages plugin won't work and you'll see an error. We can debug this by running the deploy with the `-d` flag. That will tell us at which step the deploy failed.
 
-- If the deploy fails fetching the origin remote, it means that you do not have the remote "origin", you will need to add it, or update the `deployOrigin` setting to reflect your desired remote.
+- If the deploy fails fetching the origin remote, it means that you do not have the remote "origin", you will need to add it, or update the `deployRemote` setting to reflect your desired remote.
 
 - If the deploy fails on the push to github pages, you may need to specify your username and password within the remote. You can do this by running:
 
