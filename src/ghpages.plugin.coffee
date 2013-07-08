@@ -25,7 +25,6 @@ module.exports = (BasePlugin) ->
 			me = @
 			config = @config
 			docpad = @docpad
-			{outPath,rootPath} = config
 
 			# Let's try this way
 			docpad.setInstanceConfig({env:config.environment})
@@ -35,6 +34,8 @@ module.exports = (BasePlugin) ->
 				.command('deploy-ghpages')
 				.description("deploys your #{config.environment} website to the #{config.deployBranch} branch")
 				.action consoleInterface.wrapAction (next) ->
+					# Fetch latest DocPad configuration
+					{outPath,rootPath} = docpad.getConfig()
 
 					# Log
 					docpad.log 'info', 'Deployment to GitHub Pages starting...'
