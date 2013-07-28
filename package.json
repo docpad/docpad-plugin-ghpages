@@ -1,6 +1,6 @@
 {
 	"name": "docpad-plugin-ghpages",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
 	"homepage": "http://docpad.org/plugin/ghpages",
 	"keywords": [
@@ -31,7 +31,7 @@
 		"docpad": ">=6.24 <7"
 	},
 	"dependencies": {
-		"bal-util": "~2.2.0",
+		"bal-util": "~2.3.0",
 		"safeps": "~2.2.1"
 	},
 	"devDependencies": {

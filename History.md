@@ -1,5 +1,8 @@
 # History
 
+- v2.3.0 July 28, 2013
+	- Dependency upgrades
+
 - v2.2.0 July 8, 2013
 	- Easier debugging
 
