@@ -24,7 +24,7 @@ If you're using GitHub Pages for profile/organisation pages (which don't use the
 - Create a new repo like `website`, then use this plugin for it (recommended)
 	- Instead of having a GitHub URL like `http://username.github.io` you would then have a url like `http://username.github.io/website`
 	- Using this method in conjuction with [GitHub Pages Custom Domains](https://help.github.com/articles/setting-up-a-custom-domain-with-pages) (e.g. `http://mywebsite.com`) works a treat
-- Or open your [docpad configuration file](http://docpad.org/docs/config) and add `outPath: '.'` to it, which will tell DocPad to output to your root directory (like Jekyll does) rather than the `out` directory
+- Or open your [docpad configuration file](http://docpad.org/docs/config) and add `outPath: '.'` to it, which will tell DocPad to output to your root directory (just like Jekyll) rather than the `out` directory
 	- Please note this way (just like Jekyll) pukes up your out folder all over your root path leaving a very messy directory
 
 ### Custom Domains
