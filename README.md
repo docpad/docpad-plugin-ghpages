@@ -17,6 +17,8 @@ docpad install ghpages
 ## Usage
 Run `docpad deploy-ghpages` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
 
+If you're usig custom domains, place your `CNAME` file at `src/files/CNAME` so it gets copied over to `out/CNAME` upon generation and consequently to the root of the `gh-pages` branch upon deployment.
+
 
 ## Debugging
 Dpendending on circumstances, maybe the github pages plugin won't work and you'll see an error. We can debug this by running the deploy with the `-d` flag like so `docpad deploy-ghpages -d`. That will tell us at which step the deploy failed.
