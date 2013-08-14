@@ -18,7 +18,7 @@ docpad install ghpages
 Run `docpad deploy-ghpages` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
 
 
-## Notes
+### Profile/Organisation Pages
 If you're using GitHub Pages for profile/organisation pages (which don't use the `gh-pages` branch) this plugin will not be of use to you, in which case we would recommend either:
 
 - Create a new repo like `website`, then use this plugin for it (recommended)
@@ -27,6 +27,7 @@ If you're using GitHub Pages for profile/organisation pages (which don't use the
 - Or open your [docpad configuration file](http://docpad.org/docs/config) and add `outPath: '.'` to it, which will tell DocPad to output to your root directory (like Jekyll does) rather than the `out` directory
 	- Please note this way (just like Jekyll) pukes up your out folder all over your root path leaving a very messy directory
 
+### Custom Domains
 If you're using [GitHub Pages Custom Domains](https://help.github.com/articles/setting-up-a-custom-domain-with-pages):
 
 - Place your `CNAME` file at `src/files/CNAME` so it gets copied over to `out/CNAME` upon generation and consequently to the root of the `gh-pages` branch upon deployment
