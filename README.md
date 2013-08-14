@@ -18,8 +18,8 @@ docpad install ghpages
 Run `docpad deploy-ghpages` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
 
 
-### Profile/Organisation Pages
-If you're using GitHub Pages for profile/organisation pages (which don't use the `gh-pages` branch) this plugin will not be of use to you, in which case we would recommend either:
+### Profile/Organization Pages
+If you're using GitHub Pages for profile/organization pages (which don't use the `gh-pages` branch) this plugin will not be of use to you, in which case we would recommend either:
 
 - Create a new repo like `website`, then use this plugin for it (recommended)
 	- Instead of having a GitHub URL like `http://username.github.io` you would then have a url like `http://username.github.io/website`
