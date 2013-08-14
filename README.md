@@ -27,7 +27,7 @@ If you're using github pages for profile pages (which don't use the `gh-pages` b
 - Create a new repo like `website`, then use this plugin for it (recommended)
 	- Instead of having a URL like `http://username.github.io` you would then have a url like `http://username.github.io/website`. If that is a problem, use a custom domain instead like `http://mywebsite.com`
 - Or open your [docpad configuration file](http://docpad.org/docs/config) and add `outPath: '.'` to it, which will tell DocPad to output to your root directory (like Jekyll does) rather than the `out` directory
-	- Please note this way essentially (just like Jekyll) pukes up your out folder all over your root path leaving a very messy directory
+	- Please note this way (just like Jekyll) pukes up your out folder all over your root path leaving a very messy directory
 
 
 ## Debugging
