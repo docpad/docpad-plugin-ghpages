@@ -1,40 +1,54 @@
 {
-	"name": "docpad-plugin-ghpages",
-	"version": "2.0.3",
-	"description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
-	"homepage": "http://docpad.org/plugin/ghpages",
-	"keywords": [
-		"docpad",
-		"docpad-plugin", "docpad-deployer",
-		"github", "github-pages", "ghpages"
-	],
-	"author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
-	"maintainers": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-		"Avi Deitcher (https://github.com/deitch)",
-		"Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
-	],
-	"contributors": [
-		"Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-		"Avi Deitcher (https://github.com/deitch)",
-		"Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
-	],
-	"bugs": {
-		"url": "http://docpad.org/plugin/ghpages/issues"
-	},
-	"repository" : {
-		"type": "git",
-		"url": "https://github.com/docpad/docpad-plugin-ghpages.git"
-	},
-	"engines" : {
-		"node": ">=0.4",
-		"docpad": ">=6.24 <7"
-	},
-	"dependencies": {
-		"bal-util": "~2.0.2"
-	},
-	"devDependencies": {
-		"coffee-script": "~1.6.2"
-	},
-	"main": "./out/ghpages.plugin.js"
+  "name": "docpad-plugin-ghpages",
+  "version": "2.0.3",
+  "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
+  "homepage": "http://docpad.org/plugin/ghpages",
+  "keywords": [
+    "docpad",
+    "docpad-plugin",
+    "docpad-deployer",
+    "github",
+    "github-pages",
+    "ghpages"
+  ],
+  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+  "maintainers": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+    "Avi Deitcher (https://github.com/deitch)",
+    "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
+  ],
+  "contributors": [
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+    "Avi Deitcher (https://github.com/deitch)",
+    "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
+  ],
+  "bugs": {
+    "url": "http://docpad.org/plugin/ghpages/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/docpad/docpad-plugin-ghpages.git"
+  },
+  "engines": {
+    "node": ">=0.4",
+    "docpad": ">=6.24 <7"
+  },
+  "dependencies": {
+    "bal-util": "~2.0.2",
+    "async": "~0.2.9",
+    "docpad-plugin-eco": "~2.0.2",
+    "rimraf": "2.x"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.6.2",
+    "sinon": "~1.7.3",
+    "docpad": "6.x",
+    "docpad-plugin-marked": "2.x",
+    "docpad-plugin-eco": "2.x",
+    "should": "~1.2.2"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "main": "./out/ghpages.plugin.js"
 }
