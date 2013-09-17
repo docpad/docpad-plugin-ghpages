@@ -94,6 +94,6 @@ describe('ghpages', function(){
 					done();
 				});
 			});
-	  });	  
+	  });
 	});
 });

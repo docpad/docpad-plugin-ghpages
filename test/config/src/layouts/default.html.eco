@@ -1,8 +1,0 @@
-<html>
-<head>
-  <title>Some Title</title>
-</head>
-<body>
-  <%- @content %>
-</body>
-</html>

@@ -29,23 +29,20 @@
     "type": "git",
     "url": "https://github.com/docpad/docpad-plugin-ghpages.git"
   },
-  "engines": {
-    "node": ">=0.4",
-    "docpad": ">=6.24 <7"
+  "engines" : {
+    "node": ">=0.8"
+  },
+  "peerDependencies": {
+    "docpad": "6"
   },
   "dependencies": {
-    "bal-util": "~2.0.2",
-    "async": "~0.2.9",
-    "docpad-plugin-eco": "~2.0.2",
-    "safeps": "~2.2.7",
-    "rimraf": "2.x"
+    "safeps": "~2.2.8",
+    "rimraf": "~2.2.2"
   },
   "devDependencies": {
     "coffee-script": "~1.6.2",
     "sinon": "~1.7.3",
     "docpad": ">=6.37 <7",
-    "docpad-plugin-marked": "2.x",
-    "docpad-plugin-eco": "2.x",
     "should": "~1.2.2"
   },
   "scripts": {
