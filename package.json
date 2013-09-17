@@ -29,7 +29,7 @@
     "type": "git",
     "url": "https://github.com/docpad/docpad-plugin-ghpages.git"
   },
-  "engines" : {
+  "engines": {
     "node": ">=0.8"
   },
   "peerDependencies": {
@@ -41,12 +41,11 @@
   },
   "devDependencies": {
     "coffee-script": "~1.6.2",
-    "sinon": "~1.7.3",
     "docpad": ">=6.37 <7",
-    "should": "~1.2.2"
+    "chai": "~1.7.2"
   },
+  "main": "./out/ghpages.plugin.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha"
-  },
-  "main": "./out/ghpages.plugin.js"
+    "test": "node ./out/ghpages.test.js"
+  }
 }
