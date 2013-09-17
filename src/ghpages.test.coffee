@@ -5,4 +5,5 @@ require('docpad').require('testers')
 			pluginPath: __dirname+'/..'
 		,
 			env: 'static'
+			logLevel: 7
 	)

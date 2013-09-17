@@ -14,16 +14,13 @@ module.exports = (BasePlugin) ->
 		config:
 			deployRemote: 'origin'
 			deployBranch: 'gh-pages'
+			environment: 'static'
 
 		# Do the Deploy
-		deployToGithubPages: (opts,next) =>
+		deployToGithubPages: (next) =>
 			# Prepare
 			docpad = @docpad
-
-			# Fetch the latest plugin configuration
 			config = @getConfig()
-
-			# Fetch latest DocPad configuration
 			{outPath,rootPath} = docpad.getConfig()
 
 			# Log
@@ -36,8 +33,8 @@ module.exports = (BasePlugin) ->
 			outGitPath = pathUtil.join(outPath,'.git')
 
 			# Check environment
-			if 'static' not in docpad.getEnvironments()
-				err = new Error("Please run again using:\n\tdocpad deploy-ghpages --env static")
+			if config.environment not in docpad.getEnvironments()
+				err = new Error("Please run again using: docpad deploy-ghpages --env #{config.environment}")
 				return next(err)
 
 			# Log
@@ -89,7 +86,7 @@ module.exports = (BasePlugin) ->
 								['commit', '-m', lastCommit]
 								['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
 							]
-							safeps.spawnCommands 'git', gitCommands, {cwd:outPath,output:true}, (err,stdout,stderr) ->
+							safeps.spawnCommands 'git', gitCommands, {cwd:outPath,stdio:'inherit'}, (err,stdout,stderr) ->
 								# Error?
 								return next(err)  if err
 
@@ -115,13 +112,14 @@ module.exports = (BasePlugin) ->
 		consoleSetup: (opts) =>
 			# Prepare
 			docpad = @docpad
+			config = @getConfig()
 			{consoleInterface,commander} = opts
 
 			# Deploy command
 			commander
 				.command('deploy-ghpages')
-				.description("Deploys your #{docpad.getEnvironments()} website to the #{config.deployRemote}/#{config.deployBranch} branch")
-				.action consoleInterface.wrapAction @deployToGithubPages.bind(@)
+				.description("Deploys your #{config.environment} website to the #{config.deployRemote}/#{config.deployBranch} branch")
+				.action consoleInterface.wrapAction(@deployToGithubPages)
 
 			# Chain
 			@

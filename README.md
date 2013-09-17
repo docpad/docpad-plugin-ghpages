@@ -15,7 +15,7 @@ docpad install ghpages
 
 
 ## Usage
-Run `docpad deploy-ghpages` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
+Run `docpad deploy-ghpages --env static` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
 
 
 ### Profile/Organisation Pages
