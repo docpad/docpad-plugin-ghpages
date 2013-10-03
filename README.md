@@ -19,13 +19,47 @@ Run `docpad deploy-ghpages --env static` to deploy the contents of your out dire
 
 
 ### Profile/Organisation Pages
-If you're using GitHub Pages for profile/organisation pages (which don't use the `gh-pages` branch) this plugin will not be of use to you, in which case we would recommend either:
+If you're using GitHub Pages for profile/organisation pages (which don't use the `gh-pages` branch) you have the following options:
 
-- Create a new repo like `website`, then use this plugin for it (recommended)
-	- Instead of having a GitHub URL like `http://username.github.io` you would then have a url like `http://username.github.io/website`
-	- Using this method in conjuction with [GitHub Pages Custom Domains](https://help.github.com/articles/setting-up-a-custom-domain-with-pages) (e.g. `http://mywebsite.com`) works a treat
-- Or open your [docpad configuration file](http://docpad.org/docs/config) and add `outPath: '.'` to it, which will tell DocPad to output to your root directory (just like Jekyll) rather than the `out` directory
-	- Please note this way (just like Jekyll) pukes up your out folder all over your root path leaving a very messy directory
+#### Two Repositories
+Setup one repository called `username.github.io` which will be your target repository, and one called `website` which will be your source repository.
+
+Inside your `website` repository, add the following to your [docpad configuration file](http://docpad.org/docs/config):
+
+``` coffee
+plugins:
+	ghpages:
+		deployRemote: 'target'
+		deployBranch: 'master'
+```
+
+And run the following in terminal:
+
+```
+git remote add target https://github.com/username/username.github.io.git
+```
+
+Then when you run `docpad deploy-ghpages --env static` inside your website repository, the generated `out` directory will be pushed up to your target repository's `master` branch.
+
+
+#### Multiple Branches
+If you would like to have your source and generated site on the same repository, you can do this by the following.
+
+Move the source of your website to the branch `source`, and the following to your [docpad configuration file](http://docpad.org/docs/config):
+
+``` coffee
+plugins:
+	ghpages:
+		deployRemote: 'origin'
+		deployBranch: 'master'
+```
+
+Then when you run `docpad deploy-ghpages --env static` inside your website repository's `source` branch, the generated `out` directory will be pushed up to same repository's `master` branch.
+
+
+#### Pulluting the Root Directory
+The final option is to have the `out` directory by your website's root directory, so instead of say `your-website/src/documents/index.html` being outputted to `your-website/out/index.html`, instead it will be outputted to `you-website/index.html`. This is the way Jekyll works, however we don't recommend it as it is very messy and commits the out files into your repository.
+
 
 ### Custom Domains
 If you're using [GitHub Pages Custom Domains](https://help.github.com/articles/setting-up-a-custom-domain-with-pages):
