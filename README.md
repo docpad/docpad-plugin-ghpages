@@ -19,7 +19,7 @@ Run `docpad deploy-ghpages --env static` to deploy the contents of your out dire
 
 
 ### Profile/Organisation Pages
-If you're using GitHub Pages for profile/organisation pages (which don't use the `gh-pages` branch) you have the following options:
+GitHub Pages for Profile/Organisation Pages (e.g. `http://username.github.io` via `https://github.com/username/username.github.io`) don't use the `gh-pages` branch, but `master` instead - because of this, you have the following great options:
 
 #### Two Repositories
 Setup one repository called `username.github.io` which will be your target repository, and one called `website` which will be your source repository.
