@@ -15,11 +15,15 @@ docpad install ghpages
 
 
 ## Usage
-Run `docpad deploy-ghpages --env static` to deploy the contents of your out directory directly to your repo's `gh-pages` branch. No configuration or setup required.
+
+### Project Pages
+This plugin works with GitHub Pages for Projects (e.g. `http://username.github.io/project` via `gh-pages` branch on `https://github.com/username/project`) with no configuration or setup required.
+
+Simply run `docpad deploy-ghpages --env static` to deploy the contents of your `out` directory directly to your repository's `gh-pages` branch.
 
 
 ### Profile/Organisation Pages
-GitHub Pages for Profile/Organisation Pages (e.g. `http://username.github.io` via `https://github.com/username/username.github.io`) don't use the `gh-pages` branch, but `master` instead - because of this, you have the following great options:
+This plugin also works with GitHub Pages for Profiles and Organisations (e.g. `http://username.github.io` via `master` branch on `https://github.com/username/username.github.io`) via any of the following options:
 
 #### Two Repositories
 Setup one repository called `username.github.io` which will be your target repository, and one called `website` which will be your source repository.
