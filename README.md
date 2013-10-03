@@ -62,7 +62,7 @@ Then when you run `docpad deploy-ghpages --env static` inside your website repos
 
 
 #### Polluting the Root Directory
-The final option is to not use this plugin and have the `out` directory by your website's root directory, so instead of say `your-website/src/documents/index.html` being outputted to `your-website/out/index.html`, instead it will be outputted to `you-website/index.html`. This is the way Jekyll works, however we don't recommend it as it is very messy and commits the out files into your repository.
+The final option is to not use this plugin and have the `out` directory be your website's root directory, so instead of say `your-website/src/documents/index.html` being outputted to `your-website/out/index.html`, instead it will be outputted to `you-website/index.html`. This is the way Jekyll works, however we don't recommend it as it is very messy and commits the out files into your repository.
 
 To do this, add the following to your [docpad configuration file](http://docpad.org/docs/config):
 
