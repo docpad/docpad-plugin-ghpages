@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "coffee-script": "~1.6.2",
-    "docpad": ">=6.37 <7",
     "chai": "~1.7.2"
   },
   "main": "./out/ghpages.plugin.js",
