@@ -84,7 +84,7 @@ module.exports = (BasePlugin) ->
 								['init']
 								['add', '.']
 								['commit', '-m', lastCommit]
-								['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
+								['push', '--quiet', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
 							]
 							safeps.spawnCommands 'git', gitCommands, {cwd:outPath,stdio:'inherit'}, (err,stdout,stderr) ->
 								# Error?

@@ -1,10 +1,16 @@
 # History
 
+- v2.4.1 December 13, 2013
+	- Git push is now executed quietly
+		- Thanks to [Nathan Friedly](https://github.com/nfriedly) for [issue #15](https://github.com/docpad/docpad-plugin-ghpages/issues/15) and [pull request #16](https://github.com/docpad/docpad-plugin-ghpages/pull/16)
+	- Updated dependencies
+	- Repackaged
+
 - v2.4.0 September 17, 2013
-	- Dependency upgrades
+	- Updated dependencies
 
 - v2.3.0 July 28, 2013
-	- Dependency upgrades
+	- Updated dependencies
 
 - v2.2.0 July 8, 2013
 	- Easier debugging
@@ -16,16 +22,16 @@
 	- Repackaged
 
 - v2.1.0 June 24, 2013
-	- Dependency upgrades
+	- Updated dependencies
 
 - v2.0.3 June 14, 2013
 	- Do not allow an outPath that is the same as the rootPath
 
 - v2.0.2 April 5, 2013
-	- Dependency upgrades
+	- Updated dependencies
 
 - v2.0.1 April 1, 2013
-	- Dependency upgrades
+	- Updated dependencies
 
 - v2.0.0 March 7, 2013
 	- Initial working release
