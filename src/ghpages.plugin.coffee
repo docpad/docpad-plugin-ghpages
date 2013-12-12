@@ -15,6 +15,7 @@ module.exports = (BasePlugin) ->
 			deployRemote: 'origin'
 			deployBranch: 'gh-pages'
 			environment: 'static'
+			quiet: false
 
 		# Do the Deploy
 		deployToGithubPages: (next) =>
@@ -77,6 +78,9 @@ module.exports = (BasePlugin) ->
 
 							# Log
 							docpad.log 'debug', 'Performing push...'
+							
+							pushCommand = ['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
+							pushCommand.push('--quiet') if config.quiet # useful to hide Personal Access Tokens when used in conjunction with Travis CI
 
 							# Initialize a git repo inside the out directory
 							# and push it to the deploy branch
@@ -84,7 +88,7 @@ module.exports = (BasePlugin) ->
 								['init']
 								['add', '.']
 								['commit', '-m', lastCommit]
-								['push', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
+								pushCommand
 							]
 							safeps.spawnCommands 'git', gitCommands, {cwd:outPath,stdio:'inherit'}, (err,stdout,stderr) ->
 								# Error?
