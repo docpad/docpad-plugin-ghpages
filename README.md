@@ -1,8 +1,15 @@
 # [GitHub Pages](http://pages.github.com/) Deployer Plugin for [DocPad](http://docpad.org)
 
-[![NPM version](https://badge.fury.io/js/docpad-plugin-ghpages.png)](https://npmjs.org/package/docpad-plugin-ghpages "View this project on NPM")
-[![Flattr donate button](https://raw.github.com/balupton/flattr-buttons/master/badge-89x18.gif)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
-[![PayPayl donate button](https://www.paypalobjects.com/en_AU/i/btn/btn_donate_SM.gif)](https://www.paypal.com/au/cgi-bin/webscr?cmd=_flow&SESSION=IHj3DG3oy_N9A9ZDIUnPksOi59v0i-EWDTunfmDrmU38Tuohg_xQTx0xcjq&dispatch=5885d80a13c0db1f8e263663d3faee8d14f86393d55a810282b64afed84968ec "Donate once-off to this project using Paypal")
+<!-- BADGES/ -->
+
+[![Build Status](http://img.shields.io/travis-ci/docpad/docpad-plugin-ghpages.png?branch=master)](http://travis-ci.org/docpad/docpad-plugin-ghpages "Check this project's build status on TravisCI")
+[![NPM version](http://badge.fury.io/js/docpad-plugin-ghpages.png)](https://npmjs.org/package/docpad-plugin-ghpages "View this project on NPM")
+[![Gittip donate button](http://img.shields.io/gittip/docpad.png)](https://www.gittip.com/docpad/ "Donate weekly to this project using Gittip")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
+[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+
+<!-- /BADGES -->
+
 
 Deploy to Github Pages easily via `docpad deploy-ghpages`
 
@@ -96,21 +103,65 @@ Depending on circumstances, the github pages plugin might not work and you'll se
 
 
 
+<!-- HISTORY/ -->
+
 ## History
-[You can discover the history inside the `History.md` file](https://github.com/bevry/docpad-plugin-ghpages/blob/master/History.md#files)
+[Discover the change history by heading on over to the `HISTORY.md` file.](https://github.com/docpad/docpad-plugin-ghpages/blob/master/HISTORY.md#files)
+
+<!-- /HISTORY -->
 
 
-## Contributing
-[You can discover the contributing instructions inside the `Contributing.md` file](https://github.com/bevry/docpad-plugin-ghpages/blob/master/Contributing.md#files)
+<!-- CONTRIBUTE/ -->
 
+## Contribute
+
+[Discover how you can contribute by heading on over to the `CONTRIBUTING.md` file.](https://github.com/docpad/docpad-plugin-ghpages/blob/master/CONTRIBUTING.md#files)
+
+<!-- /CONTRIBUTE -->
+
+
+<!-- BACKERS/ -->
+
+## Backers
+
+### Maintainers
+
+These amazing people are maintaining this project:
+
+- Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)
+- Avi Deitcher (https://github.com/deitch)
+- Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)
+
+### Sponsors
+
+No sponsors yet! Will you be the first?
+
+[![Gittip donate button](http://img.shields.io/gittip/docpad.png)](https://www.gittip.com/docpad/ "Donate weekly to this project using Gittip")
+[![Flattr donate button](http://img.shields.io/flattr/donate.png?color=yellow)](http://flattr.com/thing/344188/balupton-on-Flattr "Donate monthly to this project using Flattr")
+[![PayPayl donate button](http://img.shields.io/paypal/donate.png?color=yellow)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QB8GQPZAH84N6 "Donate once-off to this project using Paypal")
+
+### Contributors
+
+These amazing people have contributed code to this project:
+
+- Avi Deitcher (https://github.com/deitch) - [view contributions](https://github.com/docpad/docpad-plugin-ghpages/commits?author=deitch)
+- Benjamin Lupton <b@lupton.cc> (https://github.com/balupton) - [view contributions](https://github.com/docpad/docpad-plugin-ghpages/commits?author=balupton)
+- KyleAMathews (https://github.com/KyleAMathews) - [view contributions](https://github.com/docpad/docpad-plugin-ghpages/commits?author=KyleAMathews)
+- Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin) - [view contributions](https://github.com/docpad/docpad-plugin-ghpages/commits?author=sergeylukin)
+
+[Become a contributor!](https://github.com/docpad/docpad-plugin-ghpages/blob/master/CONTRIBUTING.md#files)
+
+<!-- /BACKERS -->
+
+
+<!-- LICENSE/ -->
 
 ## License
-Licensed under the incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT License](http://creativecommons.org/licenses/MIT/)
-<br/>Copyright &copy; 2013+ [Bevry Pty Ltd](http://bevry.me) <us@bevry.me>
+
+Licensed under the incredibly [permissive](http://en.wikipedia.org/wiki/Permissive_free_software_licence) [MIT license](http://creativecommons.org/licenses/MIT/)
+
+Copyright &copy; 2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)
+
+<!-- /LICENSE -->
 
 
-## Contributors
-
-- [Benjamin Lupton](http://github.com/balupton)
-- [Avi Deitcher](http://github.com/deitch)
-- [Sergey Lukin](http://github.com/sergeylukin)

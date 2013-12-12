@@ -3,6 +3,16 @@
   "version": "2.4.0",
   "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
   "homepage": "http://docpad.org/plugin/ghpages",
+  "license": {
+    "type": "MIT"
+  },
+  "badges": {
+    "travis": true,
+    "npm": true,
+    "gittip": "docpad",
+    "flattr": "344188/balupton-on-Flattr",
+    "paypal": "QB8GQPZAH84N6"
+  },
   "keywords": [
     "docpad",
     "docpad-plugin",
@@ -11,19 +21,20 @@
     "github-pages",
     "ghpages"
   ],
-  "author": "Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
+  "author": "2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
   "maintainers": [
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
     "Avi Deitcher (https://github.com/deitch)",
     "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
   ],
   "contributors": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
     "Avi Deitcher (https://github.com/deitch)",
+    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
+    "KyleAMathews (https://github.com/KyleAMathews)",
     "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
   ],
   "bugs": {
-    "url": "http://docpad.org/plugin/ghpages/issues"
+    "url": "https://github.com/docpad/docpad-plugin-ghpages/issues"
   },
   "repository": {
     "type": "git",
@@ -41,7 +52,8 @@
   },
   "devDependencies": {
     "coffee-script": "~1.6.2",
-    "chai": "~1.7.2"
+    "chai": "~1.8.1",
+    "projectz": "~0.3.0"
   },
   "main": "./out/ghpages.plugin.js",
   "scripts": {
