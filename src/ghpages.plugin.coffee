@@ -2,6 +2,8 @@
 safeps = require('safeps')
 rimraf = require('rimraf')
 pathUtil = require('path')
+safefs = require('safefs')
+{TaskGroup} = require('taskgroup')
 
 # Export
 module.exports = (BasePlugin) ->
@@ -22,87 +24,107 @@ module.exports = (BasePlugin) ->
 			docpad = @docpad
 			config = @getConfig()
 			{outPath,rootPath} = docpad.getConfig()
+			opts = {}
 
 			# Log
 			docpad.log 'info', 'Deployment to GitHub Pages starting...'
 
+			# Tasks
+			tasks = new TaskGroup().once('complete', next)
+
 			# Check paths
-			if outPath is rootPath
-				err = new Error("Your outPath configuration has been customised. Please remove the customisation in order to use the GitHub Pages plugin")
-				return next(err)
-			outGitPath = pathUtil.join(outPath,'.git')
+			tasks.addTask (complete) ->
+				# Check
+				if outPath is rootPath
+					err = new Error("Your outPath configuration has been customised. Please remove the customisation in order to use the GitHub Pages plugin")
+					return next(err)
+
+				# Apply
+				opts.outGitPath = pathUtil.join(outPath, '.git')
+
+				# Complete
+				return complete()
 
 			# Check environment
-			if config.environment not in docpad.getEnvironments()
-				err = new Error("Please run again using: docpad deploy-ghpages --env #{config.environment}")
-				return next(err)
+			tasks.addTask (complete) ->
+				# Check
+				if config.environment not in docpad.getEnvironments()
+					err = new Error("Please run again using: docpad deploy-ghpages --env #{config.environment}")
+					return next(err)
 
-			# Log
-			docpad.log 'debug', 'Removing old ./out/.git directory..'
+				# Complete
+				return complete()
 
 			# Remove the out git repo if it exists
-			rimraf outGitPath, (err) ->
-				# Error?
-				return next(err)  if err
+			tasks.addTask (complete) ->
+				docpad.log 'debug', 'Removing old ./out/.git directory..'
+				rimraf(opts.outGitPath, complete)
 
-				# Log
+			# Generate the static environment to out
+			tasks.addTask (complete) ->
 				docpad.log 'debug', 'Performing static generation...'
-
-				# Generate the static environment to out
-				docpad.generate (err) ->
+				docpad.action('generate', complete)
+			
+			# Add a .nojekyll file
+			tasks.addTask (complete) ->
+				docpad.log 'debug', 'Disabling jekyll...'
+				safefs.writeFile(pathUtil.join(outPath, '.nojekyll'), '', complete)
+			
+			# Fetch the project's remote url so we can push to it in our new git repo
+			tasks.addTask (complete) ->		
+				docpad.log 'debug', "Fetching the URL of the {config.deployRemote} remote..."
+				safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
 					# Error?
-					return next(err)  if err
+					return complete(err)  if err
+
+					# Extract
+					opts.remoteRepoUrl = stdout.replace(/\n/,"")
+
+					# Complete
+					return complete()
+
+			# Fetch the last log so we can add a meaningful commit message
+			tasks.addTask (complete) ->
+				docpad.log 'debug', 'Fetching log messages...'
+				safeps.spawnCommand 'git', ['log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
+					# Error?
+					return complete(err)  if err
+
+					# Extract
+					opts.lastCommit = stdout.split('\n')[0]
+
+					# Complete
+					return complete()
+
+			# Initialize a git repo inside the out directory and push it to the deploy branch
+			tasks.addTask (complete) ->
+				docpad.log 'debug', 'Performing push...'
+				gitCommands = [
+					['init']
+					['add', '.']
+					['commit', '-m', opts.lastCommit]
+					['push', '--quiet', '--force', opts.remoteRepoUrl, "master:#{config.deployBranch}"]
+				]
+				safeps.spawnCommands 'git', gitCommands, {cwd:outPath, stdio:'inherit'}, (err) ->
+					# Error?
+					return complete(err)  if err
 
 					# Log
-					docpad.log 'debug', "Fetching the URL of the {config.deployRemote} remote..."
+					docpad.log('info', 'Deployment to GitHub Pages completed successfully')
 
-					# Fetch the project's remote url so we can push to it in our new git repo
-					safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
-						# Error?
-						return next(err)  if err
+					# Complete
+					return complete()
 
-						# Extract
-						remoteRepoUrl = stdout.replace(/\n/,"")
+			# Now that deploy is done, remove the out git repo
+			tasks.addTask (complete) ->
+				docpad.log 'debug', 'Removing new ./out/.git directory..'
+				rimraf(opts.outGitPath, complete)
 
-						# Log
-						docpad.log 'debug', 'Fetching log messages...'
+			# Start the deployment
+			tasks.run()
 
-						# Fetch the last log so we can add a meaningful commit message
-						safeps.spawnCommand 'git', ['log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
-							# Error?
-							return next(err)  if err
-
-							# Extract
-							lastCommit = stdout.split('\n')[0]
-
-							# Log
-							docpad.log 'debug', 'Performing push...'
-
-							# Initialize a git repo inside the out directory
-							# and push it to the deploy branch
-							gitCommands = [
-								['init']
-								['add', '.']
-								['commit', '-m', lastCommit]
-								['push', '--quiet', '--force', remoteRepoUrl, "master:#{config.deployBranch}"]
-							]
-							safeps.spawnCommands 'git', gitCommands, {cwd:outPath,stdio:'inherit'}, (err,stdout,stderr) ->
-								# Error?
-								return next(err)  if err
-
-								# Log
-								docpad.log('info', 'Deployment to GitHub Pages completed successfully')
-
-								# Log
-								docpad.log 'debug', 'Removing new ./out/.git directory..'
-
-								# Now that deploy is done, remove the out git repo
-								rimraf outGitPath, (err) ->
-									# Error?
-									return next(err)  if err
-
-									# Done
-									return next()
+			# Chain
+			@
 
 
 		# =============================

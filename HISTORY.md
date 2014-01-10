@@ -1,5 +1,9 @@
 # History
 
+- v2.4.2 January 10, 2014
+	- Disabled jekyll functionality via `.nojekyll` file
+		- Thanks to [Rob Loach](https://github.com/RobLoach) for [issue #18](https://github.com/docpad/docpad-plugin-ghpages/issues/18)
+
 - v2.4.1 December 13, 2013
 	- Git push is now executed quietly
 		- Thanks to [Nathan Friedly](https://github.com/nfriedly) for [issue #15](https://github.com/docpad/docpad-plugin-ghpages/issues/15) and [pull request #16](https://github.com/docpad/docpad-plugin-ghpages/pull/16)
