@@ -64,14 +64,14 @@ module.exports = (BasePlugin) ->
 			tasks.addTask (complete) ->
 				docpad.log 'debug', 'Performing static generation...'
 				docpad.action('generate', complete)
-			
+
 			# Add a .nojekyll file
 			tasks.addTask (complete) ->
 				docpad.log 'debug', 'Disabling jekyll...'
 				safefs.writeFile(pathUtil.join(outPath, '.nojekyll'), '', complete)
-			
+
 			# Fetch the project's remote url so we can push to it in our new git repo
-			tasks.addTask (complete) ->		
+			tasks.addTask (complete) ->
 				docpad.log 'debug', "Fetching the URL of the {config.deployRemote} remote..."
 				safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
 					# Error?
@@ -101,7 +101,7 @@ module.exports = (BasePlugin) ->
 				docpad.log 'debug', 'Performing push...'
 				gitCommands = [
 					['init']
-					['add', '.']
+					['add', '--all', '--force']  # make sure we add absoutely everything in the out directory, even files that could be ignored by our global ignore file (like bower_components)
 					['commit', '-m', opts.lastCommit]
 					['push', '--quiet', '--force', opts.remoteRepoUrl, "master:#{config.deployBranch}"]
 				]

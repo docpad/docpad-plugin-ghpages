@@ -1,5 +1,8 @@
 # History
 
+- v2.4.3 January 24, 2014
+	- Push everything inside our out path, even files that may be ignored by gitignore files
+
 - v2.4.2 January 10, 2014
 	- Disabled jekyll functionality via `.nojekyll` file
 		- Thanks to [Rob Loach](https://github.com/RobLoach) for [issue #18](https://github.com/docpad/docpad-plugin-ghpages/issues/18)
