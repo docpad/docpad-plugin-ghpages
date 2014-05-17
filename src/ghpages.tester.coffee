@@ -7,6 +7,7 @@ module.exports = (testers) ->
 
 		# Custom test
 		testCustom: (next) ->
+			tester = @
 			@suite 'ghpages', (suite,test) ->
 				test 'deploy', (complete) ->
-					docpad.getPlugin('ghpages').deployToGithubPages(complete)
+					tester.docpad.getPlugin('ghpages').deployToGithubPages(complete)
