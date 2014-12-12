@@ -9,9 +9,10 @@
   "badges": {
     "travis": true,
     "npm": true,
+    "npmdownloads": true,
     "david": true,
     "daviddev": true,
-    "gittip": "docpad",
+    "gratipay": "docpad",
     "flattr": "344188/balupton-on-Flattr",
     "paypal": "QB8GQPZAH84N6",
     "bitcoin": "https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a",
@@ -35,6 +36,7 @@
     "Avi Deitcher (https://github.com/deitch)",
     "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
     "KyleAMathews (https://github.com/KyleAMathews)",
+    "RobLoach (https://github.com/RobLoach)",
     "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
   ],
   "bugs": {
@@ -59,7 +61,7 @@
   "devDependencies": {
     "coffee-script": "~1.6.2",
     "chai": "~1.8.1",
-    "projectz": "~0.3.13",
+    "projectz": "~0.3.17",
     "docpad": "6"
   },
   "main": "./out/ghpages.plugin.js",
