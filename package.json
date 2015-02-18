@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-ghpages",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
   "homepage": "http://docpad.org/plugin/ghpages",
   "license": {
@@ -53,15 +53,15 @@
     "docpad": "6"
   },
   "dependencies": {
-    "safeps": "~2.2.11",
-    "rimraf": "~2.2.5",
-    "taskgroup": "~3.3.6",
-    "safefs": "~3.1.0"
+    "safeps": "^2.2.11",
+    "rimraf": "^2.2.5",
+    "taskgroup": "^4.2.0",
+    "safefs": "^3.1.0"
   },
   "devDependencies": {
-    "coffee-script": "~1.8.0",
-    "chai": "~1.8.1",
-    "projectz": "~0.3.17",
+    "coffee-script": "^1.9.0",
+    "chai": "^2.0.0",
+    "projectz": "^0.4.2",
     "docpad": "6"
   },
   "main": "./out/ghpages.plugin.js",

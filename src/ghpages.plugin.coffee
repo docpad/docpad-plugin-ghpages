@@ -30,7 +30,7 @@ module.exports = (BasePlugin) ->
 			docpad.log 'info', 'Deployment to GitHub Pages starting...'
 
 			# Tasks
-			tasks = new TaskGroup().once('complete', next)
+			tasks = new TaskGroup().done(next)
 
 			# Check paths
 			tasks.addTask (complete) ->
