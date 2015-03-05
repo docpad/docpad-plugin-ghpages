@@ -59,9 +59,9 @@
     "safefs": "^3.1.0"
   },
   "devDependencies": {
-    "coffee-script": "^1.9.0",
+    "coffee-script": "^1.9.1",
     "chai": "^2.0.0",
-    "projectz": "^0.4.3",
+    "projectz": "^0.5.0",
     "docpad": "6"
   },
   "main": "./out/ghpages.plugin.js",
