@@ -62,8 +62,12 @@ module.exports = (BasePlugin) ->
 
 			# Generate the static environment to out
 			tasks.addTask (complete) ->
-				docpad.log 'debug', 'Performing static generation...'
-				docpad.action('generate', complete)
+				if process.argv.indexOf('--no-generate') isnt -1
+					docpad.log 'debug', 'Skipping static generation...'
+					complete()
+				else
+					docpad.log 'debug', 'Performing static generation...'
+					docpad.action('generate', complete)
 
 			# Add a .nojekyll file
 			tasks.addTask (complete) ->
@@ -72,7 +76,7 @@ module.exports = (BasePlugin) ->
 
 			# Fetch the project's remote url so we can push to it in our new git repo
 			tasks.addTask (complete) ->
-				docpad.log 'debug', "Fetching the URL of the {config.deployRemote} remote..."
+				docpad.log 'debug', "Fetching the URL of the #{config.deployRemote} remote..."
 				safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
 					# Error?
 					return complete(err)  if err
