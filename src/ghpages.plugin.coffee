@@ -56,9 +56,9 @@ module.exports = (BasePlugin) ->
 				return complete()
 
 			# Remove the out git repo if it exists
-			tasks.addTask (complete) ->
-				docpad.log 'debug', 'Removing old ./out/.git directory..'
-				rimraf(opts.outGitPath, complete)
+			#tasks.addTask (complete) ->
+			#	docpad.log 'debug', 'Removing old ./out/.git directory..'
+			#	rimraf(opts.outGitPath, complete)
 
 			# Generate the static environment to out
 			tasks.addTask (complete) ->
@@ -120,9 +120,9 @@ module.exports = (BasePlugin) ->
 					return complete()
 
 			# Now that deploy is done, remove the out git repo
-			tasks.addTask (complete) ->
-				docpad.log 'debug', 'Removing new ./out/.git directory..'
-				rimraf(opts.outGitPath, complete)
+			#tasks.addTask (complete) ->
+			#	docpad.log 'debug', 'Removing new ./out/.git directory..'
+			#	rimraf(opts.outGitPath, complete)
 
 			# Start the deployment
 			tasks.run()
