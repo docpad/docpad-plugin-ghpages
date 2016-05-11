@@ -23,7 +23,11 @@ module.exports = (BasePlugin) ->
 			# Prepare
 			docpad = @docpad
 			config = @getConfig()
-			{outPath,rootPath} = docpad.getConfig()
+			{outPath,rootPath, ghpRoot} = docpad.getConfig()
+
+			if ghpRoot
+				outPath = outPath + '/' + ghpRoot
+
 			opts = {}
 
 			# Log
@@ -38,8 +42,7 @@ module.exports = (BasePlugin) ->
 				if outPath is rootPath
 					err = new Error("Your outPath configuration has been customised. Please remove the customisation in order to use the GitHub Pages plugin")
 					return next(err)
-
-				# Apply
+				
 				opts.outGitPath = pathUtil.join(outPath, '.git')
 
 				# Complete
