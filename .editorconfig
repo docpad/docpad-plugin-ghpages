@@ -1,11 +1,12 @@
-# v1.3.18 June 8, 2014
+# 2017 March 3
 # https://github.com/bevry/base
+
 root = true
 
 [*]
 end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = false
+trim_trailing_whitespace = true
 insert_final_newline = false
 indent_style = tab
 
@@ -14,5 +15,9 @@ indent_style = space
 indent_size = 2
 
 [*.yml]
+indent_style = space
+indent_size = 2
+
+[*.md]
 indent_style = space
 indent_size = 2

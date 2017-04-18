@@ -2,22 +2,8 @@
   "name": "docpad-plugin-ghpages",
   "version": "2.4.4",
   "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
-  "homepage": "http://docpad.org/plugin/ghpages",
-  "license": {
-    "type": "MIT"
-  },
-  "badges": {
-    "travis": true,
-    "npm": true,
-    "npmdownloads": true,
-    "david": true,
-    "daviddev": true,
-    "gratipay": "docpad",
-    "flattr": "344188/balupton-on-Flattr",
-    "paypal": "QB8GQPZAH84N6",
-    "bitcoin": "https://coinbase.com/checkouts/9ef59f5479eec1d97d63382c9ebcb93a",
-    "wishlist": "http://amzn.com/w/2F8TXKSNAFG4V"
-  },
+  "homepage": "https://github.com/docpad/docpad-plugin-ghpages",
+  "license": "MIT",
   "keywords": [
     "docpad",
     "docpad-plugin",
@@ -26,18 +12,48 @@
     "github-pages",
     "ghpages"
   ],
+  "badges": {
+    "list": [
+      "travisci",
+      "npmversion",
+      "npmdownloads",
+      "daviddm",
+      "daviddmdev",
+      "---",
+      "patreon",
+      "opencollective",
+      "gratipay",
+      "flattr",
+      "paypal",
+      "bitcoin",
+      "wishlist",
+      "---",
+      "slackin"
+    ],
+    "config": {
+      "patreonUsername": "bevry",
+      "opencollectiveUsername": "bevry",
+      "gratipayUsername": "bevry",
+      "flattrUsername": "balupton",
+      "paypalURL": "https://bevry.me/paypal",
+      "bitcoinURL": "https://bevry.me/bitcoin",
+      "wishlistURL": "https://bevry.me/wishlist",
+      "slackinURL": "https://slack.bevry.me"
+    }
+  },
   "author": "2013+ Bevry Pty Ltd <us@bevry.me> (http://bevry.me)",
   "maintainers": [
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-    "Avi Deitcher (https://github.com/deitch)",
+    "Avi Deitcher <avi@atomicinc.com> (http://blog.atomicinc.com)",
+    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
     "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
   ],
   "contributors": [
-    "Avi Deitcher (https://github.com/deitch)",
-    "Benjamin Lupton <b@lupton.cc> (https://github.com/balupton)",
-    "KyleAMathews (https://github.com/KyleAMathews)",
-    "RobLoach (https://github.com/RobLoach)",
-    "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)"
+    "Avi Deitcher <avi@atomicinc.com> (http://blog.atomicinc.com)",
+    "Benjamin Lupton <b@lupton.cc> (http://balupton.com)",
+    "Kyle Mathews <mathews.kyle@gmail.com> (http://www.bricolage.io)",
+    "Rob Loach <robloach@gmail.com> (http://robloach.net)",
+    "Sergey Lukin <contact@sergeylukin.com> (https://github.com/sergeylukin)",
+    "vsopvsop (https://github.com/vsopvsop)"
   ],
   "bugs": {
     "url": "https://github.com/docpad/docpad-plugin-ghpages/issues"
@@ -49,26 +65,62 @@
   "engines": {
     "node": ">=0.8"
   },
+  "editions": [
+    {
+      "description": "Source + CoffeeScript + Require",
+      "directory": "source",
+      "entry": "ghpages.plugin.coffee",
+      "syntaxes": [
+        "coffeescript",
+        "require"
+      ]
+    },
+    {
+      "description": "CoffeeScript Compiled + ES5 + Require",
+      "directory": "es5",
+      "entry": "ghpages.plugin.js",
+      "syntaxes": [
+        "javascript",
+        "es5",
+        "require"
+      ]
+    }
+  ],
+  "main": "es5/ghpages.plugin.js",
+  "dependencies": {
+    "rimraf": "^2.2.5",
+    "safefs": "^3.1.0",
+    "safeps": "^2.2.11",
+    "taskgroup": "^4.2.0"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.12.5",
+    "coffeelint": "^1.16.0",
+    "docpad": "^6.79.4",
+    "projectz": "^1.4.0"
+  },
   "peerDependencies": {
     "docpad": "6"
   },
-  "dependencies": {
-    "safeps": "^2.2.11",
-    "rimraf": "^2.2.5",
-    "taskgroup": "^4.2.0",
-    "safefs": "^3.1.0"
-  },
-  "devDependencies": {
-    "coffee-script": "^1.9.1",
-    "chai": "^2.0.0",
-    "projectz": "^0.5.0",
-    "docpad": "6"
-  },
-  "main": "./out/ghpages.plugin.js",
   "scripts": {
-    "test": "node ./out/ghpages.test.js"
-  },
-  "cakeConfiguration": {
-    "COFFEE_SRC_PATH": "src"
+    "our:setup": "npm run our:setup:npm && npm run our:setup:docpad",
+    "our:setup:npm": "npm install",
+    "our:setup:docpad": "bash ./docpad-setup.sh",
+    "our:clean": "rm -Rf ./docs ./es2015 ./es5 ./out",
+    "our:compile": "npm run our:compile:coffee",
+    "our:compile:coffee": "coffee -bco ./es5 ./source",
+    "our:meta": "npm run our:meta:projectz",
+    "our:meta:projectz": "projectz compile",
+    "our:verify": "npm run our:verify:coffeelint",
+    "our:verify:coffeelint": "coffeelint ./source",
+    "our:test": "npm run our:verify && npm test",
+    "our:release": "npm run our:release:prepare && npm run our:release:check && npm run our:release:tag && npm run our:release:push",
+    "our:release:prepare": "npm run our:clean && npm run our:compile && npm run our:test && npm run our:meta",
+    "our:release:check": "npm run our:release:check:changelog && npm run our:release:check:dirty",
+    "our:release:check:changelog": "cat ./HISTORY.md | grep v$npm_package_version || (echo add a changelog entry for v$npm_package_version && exit -1)",
+    "our:release:check:dirty": "git diff --exit-code",
+    "our:release:tag": "export MESSAGE=$(cat ./HISTORY.md | sed -n \"/## v$npm_package_version/,/##/p\" | sed 's/## //' | awk 'NR>1{print buf}{buf = $0}') && test \"$MESSAGE\" || (echo 'proper changelog entry not found' && exit -1) && git tag v$npm_package_version -am \"$MESSAGE\"",
+    "our:release:push": "git push origin master && git push origin --tags",
+    "test": "node --harmony es5/ghpages.test.js --joe-reporter=console"
   }
 }
