@@ -89,9 +89,9 @@
   "main": "es5/ghpages.plugin.js",
   "dependencies": {
     "rimraf": "^2.2.5",
-    "safefs": "^3.1.0",
-    "safeps": "^2.2.11",
-    "taskgroup": "^4.2.0"
+    "safefs": "^4.1.0",
+    "safeps": "^7.0.1",
+    "taskgroup": "^5.0.1"
   },
   "devDependencies": {
     "coffee-script": "^1.12.5",
