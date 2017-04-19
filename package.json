@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-ghpages",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
   "homepage": "https://github.com/docpad/docpad-plugin-ghpages",
   "license": "MIT",
