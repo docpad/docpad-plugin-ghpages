@@ -82,7 +82,6 @@ module.exports = (BasePlugin) ->
 					return complete(err)  if err
 
 					# Extract
-					console.log(stdout)
 					opts.remoteRepoUrl = stdout.toString().replace(/\n/, "")
 
 					# Complete
@@ -96,7 +95,6 @@ module.exports = (BasePlugin) ->
 					return complete(err)  if err
 
 					# Extract
-					console.log(stdout)
 					opts.lastCommit = stdout.toString().split('\n')[0]
 
 					# Complete
