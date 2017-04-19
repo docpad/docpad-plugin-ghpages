@@ -77,12 +77,13 @@ module.exports = (BasePlugin) ->
 			# Fetch the project's remote url so we can push to it in our new git repo
 			tasks.addTask (complete) ->
 				docpad.log 'debug', "Fetching the URL of the #{config.deployRemote} remote..."
-				safeps.spawnCommand 'git', ['config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
+				safeps.spawn ['git', 'config', "remote.#{config.deployRemote}.url"], {cwd:rootPath}, (err,stdout,stderr) ->
 					# Error?
 					return complete(err)  if err
 
 					# Extract
-					opts.remoteRepoUrl = stdout.replace(/\n/,"")
+					console.log(stdout)
+					opts.remoteRepoUrl = stdout.toString().replace(/\n/, "")
 
 					# Complete
 					return complete()
@@ -90,12 +91,13 @@ module.exports = (BasePlugin) ->
 			# Fetch the last log so we can add a meaningful commit message
 			tasks.addTask (complete) ->
 				docpad.log 'debug', 'Fetching log messages...'
-				safeps.spawnCommand 'git', ['log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
+				safeps.spawn ['git', 'log', '--oneline'], {cwd:rootPath}, (err,stdout,stderr) ->
 					# Error?
 					return complete(err)  if err
 
 					# Extract
-					opts.lastCommit = stdout.split('\n')[0]
+					console.log(stdout)
+					opts.lastCommit = stdout.toString().split('\n')[0]
 
 					# Complete
 					return complete()
@@ -104,12 +106,12 @@ module.exports = (BasePlugin) ->
 			tasks.addTask (complete) ->
 				docpad.log 'debug', 'Performing push...'
 				gitCommands = [
-					['init']
-					['add', '--all', '--force']  # make sure we add absoutely everything in the out directory, even files that could be ignored by our global ignore file (like bower_components)
-					['commit', '-m', opts.lastCommit]
-					['push', '--quiet', '--force', opts.remoteRepoUrl, "master:#{config.deployBranch}"]
+					['git', 'init']
+					['git', 'add', '--all', '--force']  # make sure we add absoutely everything in the out directory, even files that could be ignored by our global ignore file (like bower_components)
+					['git', 'commit', '-m', opts.lastCommit]
+					['git', 'push', '--quiet', '--force', opts.remoteRepoUrl, "master:#{config.deployBranch}"]
 				]
-				safeps.spawnCommands 'git', gitCommands, {cwd:outPath, stdio:'inherit'}, (err) ->
+				safeps.spawnMultiple gitCommands, {cwd:outPath, stdio:'inherit'}, (err) ->
 					# Error?
 					return complete(err)  if err
 
