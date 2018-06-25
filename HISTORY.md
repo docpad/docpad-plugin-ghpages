@@ -1,5 +1,9 @@
 # History
 
+## v2.7.0 2018 June 26
+- Now compiled with CoffeeScript v2
+- Updated base files
+
 ## v2.6.1 2017 April 19
 - Fixed v2.6.0
   - Thanks to [Ángel González](https://github.com/Aglezabad) for [pull request #36](https://github.com/docpad/docpad-plugin-ghpages/pull/36)
