@@ -23,7 +23,8 @@ module.exports = (BasePlugin) ->
 			# Prepare
 			docpad = @docpad
 			config = @getConfig()
-			{outPath,rootPath} = docpad.getConfig()
+			const outPath = docpad.getPath('out')
+			const rootPath = docpad.getPath('root')
 			opts = {}
 
 			# Log
