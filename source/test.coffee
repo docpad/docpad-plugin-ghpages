@@ -1,5 +1,5 @@
 # Test our plugin using DocPad's Testers
-require('docpad').require('testers')
+require('docpad-plugintester')
 	.test(
 		{
 			testerName: 'ghpages static environment'
