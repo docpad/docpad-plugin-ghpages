@@ -1,5 +1,10 @@
 # History
 
+## v2.8.1 2020 August 13
+
+-   Proper release of v2.8.0 benefits
+-   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
+
 ## v2.8.0 2020 August 5
 
 -   Updated dependencies, [base files](https://github.com/bevry/base), and [editions](https://editions.bevry.me) using [boundation](https://github.com/bevry/boundation)
