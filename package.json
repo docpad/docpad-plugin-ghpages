@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-ghpages",
-  "version": "2.8.1",
+  "version": "2.9.0",
   "description": "Deploy to Github Pages easily via `docpad deploy-ghpages`",
   "homepage": "https://github.com/docpad/docpad-plugin-ghpages",
   "license": "MIT",
@@ -82,6 +82,7 @@
       "directory": "source",
       "entry": "index.js",
       "tags": [
+        "source",
         "javascript",
         "esnext",
         "require"
@@ -96,23 +97,26 @@
   "dependencies": {
     "docpad-baseplugin": "^1.4.0",
     "rimraf": "^3.0.2",
-    "safefs": "^6.11.0",
-    "safeps": "^10.12.0",
-    "taskgroup": "^7.14.0"
+    "safefs": "^6.13.0",
+    "safeps": "^10.14.0",
+    "taskgroup": "^7.16.0"
   },
   "devDependencies": {
-    "@bevry/update-contributors": "^1.15.0",
+    "@bevry/update-contributors": "^1.17.0",
     "coffeelint": "^2.1.0",
     "coffeescript": "^2.5.1",
-    "docpad": "^6.83.1",
+    "docpad": "^6.83.2",
     "docpad-plugintester": "^1.7.3",
-    "eslint": "^7.6.0",
-    "eslint-config-bevry": "^3.18.0",
+    "eslint": "^7.8.1",
+    "eslint-config-bevry": "^3.22.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.0.5",
-    "projectz": "^2.13.0",
-    "valid-directory": "^3.0.0"
+    "prettier": "^2.1.1",
+    "projectz": "^2.16.0",
+    "valid-directory": "^3.4.0"
+  },
+  "peerDependencies": {
+    "docpad": "^6.83.2"
   },
   "scripts": {
     "our:clean": "rm -Rf ./docs ./edition* ./es2015 ./es5 ./out ./.next",
@@ -127,7 +131,8 @@
     "our:release:prepare": "npm run our:clean && npm run our:compile && npm run our:test && npm run our:meta",
     "our:release:push": "git push origin master && git push origin --tags",
     "our:release:tag": "export MESSAGE=$(cat ./HISTORY.md | sed -n \"/## v$npm_package_version/,/##/p\" | sed 's/## //' | awk 'NR>1{print buf}{buf = $0}') && test \"$MESSAGE\" || (echo 'proper changelog entry not found' && exit -1) && git tag v$npm_package_version -am \"$MESSAGE\"",
-    "our:setup": "npm run our:setup:install",
+    "our:setup": "npm run our:setup:dpt && npm run our:setup:install",
+    "our:setup:dpt": "cd test && npm install && cd ..",
     "our:setup:install": "npm install",
     "our:test": "npm run our:verify && npm test",
     "our:verify": "npm run our:verify:coffeelint && npm run our:verify:directory && npm run our:verify:eslint && npm run our:verify:prettier",
