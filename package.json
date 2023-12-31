@@ -98,7 +98,7 @@
     "docpad-baseplugin": "^1.4.0",
     "rimraf": "^3.0.2",
     "safefs": "^6.14.0",
-    "safeps": "^10.15.0",
+    "safeps": "^11.6.0",
     "taskgroup": "^7.17.0"
   },
   "devDependencies": {
